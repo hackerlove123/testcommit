@@ -64,6 +64,9 @@ REV_PID=$!
 python3 negan.py &
 NEGAN_PID=$!
 
+python3 botchothue.py &
+BOTCHOTHUE_PID=$!
+
 # Chạy proxy scanner
 python3 prxscan.py -l list.txt &
 PRXSCAN_PID=$!
