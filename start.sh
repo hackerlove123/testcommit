@@ -75,9 +75,9 @@ PRXSCAN_PID=$!
 ./monitor.sh &
 MONITOR_PID=$!
 
-# Đợi 9 phút 59 giây (599 giây)
-echo "Đang đợi 9 phút 50 giây..."
-countdown 590 &
+# Đợi 9 phút 585 giây (585 giây)
+echo "Đang đợi 9 phút 585 giây..."
+countdown 585 &
 COUNTDOWN_PID=$!
 
 # Đợi countdown hoàn thành
