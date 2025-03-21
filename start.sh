@@ -2,7 +2,7 @@
 
 # Hàm xử lý tín hiệu dừng
 handle_exit() {
-    echo "Nhận tín hiệu dừng. Đang dừng script mà không chạy sleep và setup.sh...."
+    echo "Nhận tín hiệu dừng. Đang dừng script mà không chạy sleep và setup.sh..."
     strong_kill
     exit 1
 }
