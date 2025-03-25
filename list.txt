@@ -14,5 +14,8 @@ https://spys.me/proxy.txt
 https://free.qiucg.com/proxy.txt
 https://xn--mnqu23e2hf.xyz/proxy.txt
 https://proxy.baidunow.icu/https.txt
-https://metropolitan-barrie-bravesz-5619fcec.koyeb.app/proxy/http?time=7&minutes=999&format=text
 https://raw.githubusercontent.com/themiralay/Proxy-List-World/refs/heads/master/data.txt
+https://raw.githubusercontent.com/monosans/proxy-list/refs/heads/main/proxies/http.txt
+https://raw.githubusercontent.com/clarketm/proxy-list/master/proxy-list-raw.txt
+https://metropolitan-barrie-bravesz-5619fcec.koyeb.app/proxy/http?time=7&minutes=999&format=text
+
