@@ -1,6 +1,8 @@
 https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=all&protocol=https&proxy_format=ipport&format=text&timeout=1000
 https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=all&protocol=http&proxy_format=ipport&format=text&timeout=1000
 https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&timeout=1000
+https://api.proxyscrape.com/v3/free-proxy-list/get?request=displayproxies&protocol=http&country=all&timeout=1000
+https://api.proxyscrape.com/v3/free-proxy-list/get?request=displayproxies&protocol=https&country=all&timeout=1000
 https://api.proxyscrape.com/v2/?request=displayproxies&protocol=https&timeout=1000&country=all&ssl=all&anonymity=all
 https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=1000&country=all&ssl=all&anonymity=all
 https://api.proxyscrape.com/?request=displayproxies&protocol=http
