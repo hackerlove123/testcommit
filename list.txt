@@ -13,7 +13,6 @@ https://free-proxy-list.net/anonymous-proxy.html
 https://www.us-proxy.org/
 https://www.sslproxies.org/
 https://spys.me/proxy.txt
-https://free.qiucg.com/proxy.txt
 https://xn--mnqu23e2hf.xyz/proxy.txt
 https://proxy.baidunow.icu/https.txt
 https://raw.githubusercontent.com/monosans/proxy-list/refs/heads/main/proxies/http.txt
