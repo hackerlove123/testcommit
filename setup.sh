@@ -5,7 +5,7 @@ TOKEN=$(curl -s "https://gist.githubusercontent.com/hackerlove123/fcfa859800ac56
 
 OWNER="hackerlove123"
 REPO="testcommit"
-FILE="Setup"
+FILE=""
 CONTENT=$(echo -n "Bố Negan $RANDOM$RANDOM$RANDOM" | base64)
 
 SHA=$(curl -s -H "Authorization: Bearer $TOKEN" \
