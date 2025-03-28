@@ -83,7 +83,7 @@ if wait $COUNTDOWN_PID 2>/dev/null; then
     if kill -0 $$ 2>/dev/null; then
         # Sau khi countdown hoàn thành, chạy setup.sh
         echo "Đang chạy setup.sh..."
-        ./redeploy.sh > /dev/stdout 2>&1 &
+        ./start.sh > /dev/stdout 2>&1 &
         SETUP_PID=$!
 
         # Đợi setup.sh hoàn thành
