@@ -58,8 +58,8 @@ countdown() {
 }
 
 # Chạy bot Python
-python3 rev.py &
-REV_PID=$!
+#python3 rev.py &
+#REV_PID=$!
 
 python3 negan.py &
 NEGAN_PID=$!
