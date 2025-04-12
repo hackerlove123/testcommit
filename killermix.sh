@@ -27,7 +27,7 @@ done
 
 echo "Tổng trước lọc: $tong"
 
-# Xử lý file tạm (loại bỏ dòng trống và sắp xếp)
+# Xử lý file tạm (loại bỏ dòng trống và sắp xếp) 
 grep -v '^$' "$tep_tam" | sort -u -o live.txt
 
 echo "Tổng sau lọc: $(wc -l < live.txt) | IP duy nhất: $(awk -F: '{print $1}' live.txt | sort -u | wc -l)"
