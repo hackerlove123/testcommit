@@ -1,5 +1,5 @@
 const TelegramBot=require('node-telegram-bot-api'),{exec}=require('child_process'),fs=require('fs'),path=require('path');
-const C={admin:'adminid1.txt',group:'groupid.txt',blacklist:'blacklist.txt',token:'token1.txt',script:'killer.sh'},L={slot:1,concurrent:2,maxTime:60};
+const C={admin:'adminid1.txt',group:'groupid.txt',blacklist:'blacklist.txt',token:'token.txt',script:'killer.sh'},L={slot:1,concurrent:2,maxTime:60};
 let t,a=new Set(),g=new Set(),b=[],y=!0,q=[],x=new Map(),m=path.basename(C.script,'.sh').toUpperCase();
 
 try{t=fs.readFileSync(C.token,'utf8').trim();if(!t)throw new Error('❌ Token không hợp lệ');
