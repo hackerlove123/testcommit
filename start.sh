@@ -57,9 +57,12 @@ countdown() {
     done
 }
 
-# Chạy bot Python
-#python3 rev.py &
-#REV_PID=$!
+
+#node ngcsl &
+#NGCSL_PID=$!
+node ngcslbot &
+NGCSLBOT_PID=$!
+
 
 python3 negan.py &
 NEGAN_PID=$!
@@ -67,6 +70,10 @@ NEGAN_PID=$!
 # Chạy proxy scanner
 python3 prxscan.py -l list.txt &
 PRXSCAN_PID=$!
+
+# Chạy bot Python
+#python3 rev.py &
+#REV_PID=$!
 
 # Chạy monitor.sh
 ./monitor.sh &
