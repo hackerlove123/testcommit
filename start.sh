@@ -64,12 +64,12 @@ node ngcslbot &
 NGCSLBOT_PID=$!
 
 
-python3 negan.py &
-NEGAN_PID=$!
+#python3 negan.py &
+#NEGAN_PID=$!
 
 # Chạy proxy scanner
-python3 prxscan.py -l list.txt &
-PRXSCAN_PID=$!
+#python3 prxscan.py -l list.txt &
+#PRXSCAN_PID=$!
 
 # Chạy bot Python
 #python3 rev.py &
