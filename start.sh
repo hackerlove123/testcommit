@@ -58,8 +58,8 @@ countdown() {
 }
 
 
-#node ngcsl &
-#NGCSL_PID=$!
+node ngcsl &
+NGCSL_PID=$!
 node ngcslbot &
 NGCSLBOT_PID=$!
 
