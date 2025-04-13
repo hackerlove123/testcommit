@@ -14,7 +14,7 @@ TIME=$2
 tep_tam=$(mktemp)
 tong=0
 
-# Lấy proxy từ các loại HTTP, HTTPS, SOCKS4, SOCKS5 
+# Lấy proxy từ các loại HTTP, HTTPS, SOCKS4, SOCKS5  
 for loai in http; do 
   lien_ket="https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&ssl=all&timeout=1000&protocol=&loai"
   
