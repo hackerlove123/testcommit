@@ -1,5 +1,5 @@
 const TelegramBot=require('node-telegram-bot-api'),{exec}=require('child_process'),fs=require('fs'),path=require('path');
-const C={admin:'adminid1.txt',group:'groupid.txt',blacklist:'blacklist.txt',token:'token.txt',script:'killermix.sh'},L={slot:1,concurrent:2,maxTime:60};
+const C={admin:'adminid1.txt',group:'groupid.txt',blacklist:'blacklist.txt',token:'token.txt',script:'killermix.sh'},L={slot:1,concurrent:1,maxTime:120};
 let t,a=new Set(),g=new Set(),b=[],y=!0,q=[],x=new Map(),m=path.basename(C.script,'.sh').toUpperCase();
 
 try{t=fs.readFileSync(C.token,'utf8').trim();if(!t)throw new Error('❌ Token không hợp lệ');
@@ -7,7 +7,7 @@ if(fs.existsSync(C.admin))a=new Set(fs.readFileSync(C.admin,'utf8').split('\n').
 if(fs.existsSync(C.group))g=new Set(fs.readFileSync(C.group,'utf8').split('\n').filter(Boolean));
 if(fs.existsSync(C.blacklist))b=fs.readFileSync(C.blacklist,'utf8').split('\n').filter(Boolean);}catch(e){console.error(e.message);process.exit(1);}
 
-const bot=new TelegramBot(t,{polling:!0}),h=`📜 Hướng dẫn:\n<code>https://site.com 60</code>\n⚠️ Tối đa: ${L.maxTime}s\nAdmin: <code>/pkill</code>, <code>/on</code>, <code>/off</code>\nCONTACT: @adam022022 @NeganSSHConsole`;
+const bot=new TelegramBot(t,{polling:!0}),h=`📜 Hướng dẫn:\n<code>https://site.com 120</code>\n⚠️ Tối đa: ${L.maxTime}s\nAdmin: <code>/pkill</code>, <code>/on</code>, <code>/off</code>\nCONTACT: @adam022022 @NeganSSHConsole`;
 
 bot.on('message',msg=>{
 const {chat:{id:c},text,from:{id:u,username:n,f:n2},date}=msg,ad=a.has(u+''),gr=g.has(c+''),cl=n||n2;
@@ -15,7 +15,7 @@ if(date*1000<Date.now()-60000||!gr||!text)return;
 if(text.trim()==='/help')return bot.sendMessage(c,`${cl?`@${cl} `:''}${h}`,{parse_mode:'HTML'});
 if(text.startsWith('http')){
 if(!y)return bot.sendMessage(c,'❌ Bot đang tắt',{parse_mode:'HTML'});
-const [h,t]=text.split(' ');if(!h||isNaN(t))return bot.sendMessage(c,'🚫 Sai định dạng: <code>https://site.com 60</code>',{parse_mode:'HTML'});
+const [h,t]=text.split(' ');if(!h||isNaN(t))return bot.sendMessage(c,'🚫 Sai định dạng: <code>https://site.com 120</code>',{parse_mode:'HTML'});
 if(b.some(b=>h.includes(b)))return bot.sendMessage(c,'❌ URL bị chặn',{parse_mode:'HTML'});
 const du=Math.min(parseInt(t),L.maxTime);
 if([...x.values()].filter(v=>v.u===u).length>=L.slot)return bot.sendMessage(c,`❌ Giới hạn ${L.slot} tiến trình`,{parse_mode:'HTML'});
