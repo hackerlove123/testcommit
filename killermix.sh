@@ -7,7 +7,7 @@ URL=$1
 TIME=$2
 
 # Tải proxy HTTP thẳng vào live.txt
-curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&ssl=all&timeout=1000" > live.txt
+curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&ssl=all&country=all&protocol=https&timeout=2000" > live.txt
 
 export NODE_OPTIONS=--max-old-space-size=8192
 
