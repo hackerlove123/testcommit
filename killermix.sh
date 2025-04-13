@@ -7,7 +7,7 @@ URL=$1
 TIME=$2
 
 # Tải proxy loại HTTP + HTTPS vào live.txt
-for type in http https; do
+for type in http; do
   curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&ssl=all&country=all&protocol=$type&timeout=2000"
 done > live.txt
 
