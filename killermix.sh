@@ -17,8 +17,6 @@ export NODE_OPTIONS=--max-old-space-size=8192
 node hmix.js -m POST -u "$URL" -s "$TIME" -p live.txt -t 1 -r 48 --full true -d false &
 
 node h1.js POST "$URL" live.txt "$TIME" 999 10 randomstring="true" &
-node h1.js GET "$URL" live.txt "$TIME" 999 10 randomstring="true" &
-
 
 
 wait
