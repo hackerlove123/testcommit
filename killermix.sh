@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Usage: ./script.sh <URL> <TIME>
+# Usage: ./script.sh <URL> <TIME> 
 [ $# -lt 2 ] && echo "Usage: $0 {URL} {TIME}" && exit 1
 
 URL=$1
