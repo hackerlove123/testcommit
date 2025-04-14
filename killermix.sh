@@ -8,7 +8,7 @@ TIME=$2
 
 # Tải proxy loại HTTP, HTTPS, SOCKS4, SOCKS5 vào live.txt
 for type in http https socks4 socks5; do
-  curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&timeout=3000&protocol=${type}"
+  curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&timeout=5000&protocol=${type}"
 done > live.txt
 
 export NODE_OPTIONS=--max-old-space-size=8192
