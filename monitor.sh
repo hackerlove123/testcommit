@@ -8,6 +8,9 @@ POLLING_INTERVAL=7
 # Biến flag để kiểm soát việc dừng polling
 STOP_POLLING=false
 
+# Thời điểm khởi chạy bot
+START_TIME=$(date +%s)
+
 # Hàm gửi tin nhắn qua Telegram
 send_telegram_message() {
     local message=$1
@@ -78,6 +81,19 @@ check_telegram_command() {
     fi
 }
 
+# Hàm tính thời gian hoạt động
+get_uptime() {
+    local current_time=$(date +%s)
+    local uptime_seconds=$((current_time - START_TIME))
+    
+    local days=$((uptime_seconds / 86400))
+    local hours=$(( (uptime_seconds % 86400) / 3600 ))
+    local minutes=$(( (uptime_seconds % 3600) / 60 ))
+    local seconds=$((uptime_seconds % 60))
+    
+    echo "${days}d ${hours}h ${minutes}m ${seconds}s"
+}
+
 # Hàm lấy thông tin hệ thống
 get_system_info() {
     local os_name=$(grep PRETTY_NAME /etc/os-release | cut -d'"' -f2)
@@ -128,6 +144,7 @@ get_system_info() {
 
     # Thông tin uptime
     local uptime=$(uptime -p | sed 's/up //')
+    local bot_uptime=$(get_uptime)
 
     # Tạo thông điệp
     local message="🖥 Hệ điều hành BOT FREE NEGAN_REV: $os_name
@@ -139,7 +156,8 @@ get_system_info() {
 🔍 Tiến trình tiêu tốn tài nguyên nhất: PID $top_pid | Lệnh: $top_cmd | RAM: ${top_mem}% | CPU: ${top_cpu}% |
 💾 Đĩa cứng: $disk_usage
 🎮 GPU: $gpu_info
-⏳ Uptime: $uptime"
+⏳ Uptime: $uptime
+⏱ Bot Uptime: $bot_uptime"
 
     echo "$message"
 }
