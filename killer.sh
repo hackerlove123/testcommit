@@ -16,7 +16,7 @@ tong=0
 
 # Lấy proxy từ các loại HTTP, HTTPS, SOCKS4, SOCKS5
 for loai in http; do 
-  lien_ket="https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&ssl=all&timeout=2000&protocol=&loai"
+  lien_ket="https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&ssl=all&timeout=7000&protocol=$loai"
   
   # Tải về và xử lý định dạng (đảm bảo mỗi proxy 1 dòng)
   so_luong=$(curl -s "$lien_ket" | grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}:[0-9]+' | tee -a "$tep_tam" | wc -l)
