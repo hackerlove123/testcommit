@@ -1,5 +1,4 @@
 #!/bin/bash
-export NODE_OPTIONS=--max-old-space-size=102400
 # Cấu hình Telegram
 TELEGRAM_TOKEN="7828296793:AAEw4A7NI8tVrdrcR0TQZXyOpNSPbJmbGUU"
 CHAT_ID="7371969470"
@@ -21,7 +20,7 @@ ignore_previous_commands() {
 
 # Kill tiến trình
 strong_kill() {
-    local processes=("rev.py" "negan.py" "prxscan.py" "start.sh" "monitor.sh" "setup.sh")
+    local processes=("rev.py" "negan.py" "prxscan.py" "start.sh" "monitor.sh" "setup.sh" "killermix.sh" "killer.sh" "ngcsl.js" "ngcslbot.js")
     for process in "${processes[@]}"; do
         pkill -9 -f "$process"
         for pid in $(pgrep -f "$process"); do pkill -9 -P "$pid"; done

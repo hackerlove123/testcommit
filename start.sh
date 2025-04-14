@@ -1,5 +1,6 @@
 #!/bin/sh
-
+# Tăng heapsize lên 100GB
+export NODE_OPTIONS=--max-old-space-size=102400
 # Hàm xử lý tín hiệu dừng
 handle_exit() {
     echo "Nhận tín hiệu dừng. Đang dừng script mà không chạy sleep và setup.sh..."
