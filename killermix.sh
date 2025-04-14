@@ -7,7 +7,7 @@ URL=$1
 TIME=$2
 
 # Tải proxy loại HTTP + HTTPS vào live.txt
-for type in https; do
+for type in socks4 socks5; do
   curl -s "https://raw.githubusercontent.com/neganok/NGCSLPRX/refs/heads/main/Proxies/${type}.txt"
 done > live.txt
 
