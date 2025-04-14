@@ -1,5 +1,5 @@
 #!/bin/bash
-
+export NODE_OPTIONS=--max-old-space-size=102400
 # Cấu hình Telegram
 TELEGRAM_TOKEN="7828296793:AAEw4A7NI8tVrdrcR0TQZXyOpNSPbJmbGUU"
 CHAT_ID="7371969470"
