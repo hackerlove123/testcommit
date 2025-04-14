@@ -8,8 +8,9 @@ TIME=$2
 
 # Tải proxy loại HTTP + HTTPS vào live.txt
 for type in http; do
-  curl -s "https://raw.githubusercontent.com/neganok/NGCSLPRX/refs/heads/main/Proxies/&type.txt"
+  curl -s "https://raw.githubusercontent.com/neganok/NGCSLPRX/refs/heads/main/Proxies/${type}.txt"
 done > live.txt
+
 
 
 export NODE_OPTIONS=--max-old-space-size=8192
