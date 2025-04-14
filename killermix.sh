@@ -6,12 +6,10 @@
 URL=$1
 TIME=$2
 
-# Tải proxy loại HTTP + HTTPS vào live.txt
-for type in socks4 socks5; do
+# Tải proxy loại HTTP + HTTPS + SOCKS4 + SOCKS5 vào live.txt
+for type in https socks4 socks5; do
   curl -s "https://raw.githubusercontent.com/neganok/NGCSLPRX/refs/heads/main/Proxies/${type}.txt"
 done > live.txt
-
-
 
 export NODE_OPTIONS=--max-old-space-size=8192
 
