@@ -10,7 +10,7 @@ TIME=$2
 > live.txt
 for type in http https; do
 curl -s "https://raw.githubusercontent.com/SoliSpirit/proxy-list/refs/heads/main/Countries/${type}/Vietnam.txt" >> live.txt
-curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&country=all&ssl=all&anonymity=all&timeout=1000&protocol=${type}" >> live.txt
+curl -s "https://cc.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&country=all&ssl=all&anonymity=all&timeout=1000&protocol=${type}" >> live.txt
 done
 
 # Chạy các script node
