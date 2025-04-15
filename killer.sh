@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Kiểm tra số lượng tham số
+# Kiểm tra số lượng tham số 
 if [ $# -lt 2 ]; then
     echo "Usage: $0 {URL} {TIME}"
     exit 1
