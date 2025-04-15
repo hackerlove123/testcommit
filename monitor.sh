@@ -23,10 +23,16 @@ strong_kill() {
     local processes=("rev.py" "negan.py" "prxscan.py" "start.sh" "monitor.sh" "setup.sh" "killermix.sh" "killer.sh" "ngcsl.js" "ngcslbot.js")
     for process in "${processes[@]}"; do
         pkill -9 -f "$process"
-        for pid in $(pgrep -f "$process"); do pkill -9 -P "$pid"; done
-        if pgrep -f "$process" >/dev/null; then send_telegram_message "Không thể kill $process"; else send_telegram_message "Đã kill $process thành công"; fi
+        mapfile -t pids < <(pgrep -f "$process")
+        for pid in "${pids[@]}"; do pkill -9 -P "$pid"; done
+        if pgrep -f "$process" >/dev/null; then
+            send_telegram_message "Không thể kill $process"
+        else
+            send_telegram_message "Đã kill $process thành công"
+        fi
     done
 }
+
 
 # Kiểm tra lệnh
 check_telegram_command() {
