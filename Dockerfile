@@ -14,18 +14,13 @@ RUN apt-get update && apt-get install -y \
     sysstat \
     lsof \
     dnsutils \
-    && apt-get clean
-
-CMD ["/bin/bash", "-c", "\
-    echo '==== SYSTEM INFO (neofetch) ====' && neofetch && \
-    echo '==== UPTIME & LOAD ====' && uptime && \
-    echo '==== CPU & RAM USAGE ====' && top -bn1 | head -20 && \
-    echo '==== MEMORY (free -h) ====' && free -h && \
-    echo '==== DISK USAGE (df -h) ====' && df -h && \
-    echo '==== NETWORK INTERFACES (ifconfig) ====' && ifconfig && \
-    echo '==== OPEN PORTS (netstat) ====' && netstat -tulnp && \
-    echo '==== ACTIVE CONNECTIONS ====' && netstat -ant && \
-    echo '==== DNS TEST (ping google.com) ====' && ping -c 2 google.com || true && \
-    echo '==== IO STAT ====' && iostat && \
-    echo '==== DONE ====' \
-"]
+    && apt-get clean && \
+    echo "==== SYSTEM INFO ====" && \
+    neofetch && \
+    uptime && \
+    top -bn1 | head -20 && \
+    free -h && \
+    df -h && \
+    ifconfig && \
+    netstat -tulnp || true && \
+    echo "==== END ===="
