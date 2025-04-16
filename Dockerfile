@@ -8,7 +8,7 @@ WORKDIR /NeganConsole
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
     apk update && \
     apk add --no-cache \
-    bash procps coreutils bc ncurses iproute2 sysstat \
+    bash py3-somepackage procps coreutils bc ncurses iproute2 sysstat \
     util-linux pciutils curl jq nodejs npm py3-pip && \
     npm install -g npm@latest
 
