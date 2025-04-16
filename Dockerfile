@@ -4,7 +4,7 @@ FROM alpine:latest
 # Tạo thư mục làm việc
 WORKDIR /NeganConsole
 
-# Cài đặt gói hệ thống cần thiết từ mirror TQ
+# Cài đặt các gói hệ thống cơ bản từ mirror TQ cho apk
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
     apk update && \
     apk add --no-cache \
@@ -12,11 +12,11 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     util-linux pciutils curl jq nodejs npm py3-pip python3-dev libffi-dev build-base && \
     rm -rf /var/cache/apk/*
 
-# Cài Node.js packages
+# Cài đặt các package Node.js từ registry mặc định của npm
 RUN npm install --omit=dev colors randomstring user-agents hpack axios https commander socks node-telegram-bot-api --silent && \
     rm -rf /root/.npm
 
-# Cài Python packages
+# Cài đặt các package Python từ registry mặc định của pip
 RUN pip3 install --no-cache-dir --break-system-packages requests python-telegram-bot pytz
 
 # Tăng toàn bộ giới hạn `ulimit` lên `unlimited`
@@ -41,8 +41,27 @@ RUN echo '* soft nofile unlimited' >> /etc/security/limits.conf && \
     echo 'ulimit -v unlimited' >> /etc/profile && \
     echo 'ulimit -l unlimited' >> /etc/profile
 
-# Copy source
-COPY . .
+# Thêm các cấu hình sysctl để tăng hiệu suất
+RUN echo 'fs.file-max = 1000000' >> /etc/sysctl.conf && \
+    echo 'net.core.somaxconn = 65535' >> /etc/sysctl.conf && \
+    echo 'net.core.netdev_max_backlog = 65535' >> /etc/sysctl.conf && \
+    echo 'net.ipv4.tcp_max_syn_backlog = 65535' >> /etc/sysctl.conf && \
+    echo 'net.ipv4.ip_local_port_range = 1024 65535' >> /etc/sysctl.conf && \
+    echo 'net.ipv4.tcp_tw_reuse = 1' >> /etc/sysctl.conf && \
+    echo 'net.ipv4.tcp_syncookies = 1' >> /etc/sysctl.conf && \
+    echo 'net.ipv4.tcp_fin_timeout = 15' >> /etc/sysctl.conf && \
+    echo 'net.ipv4.tcp_keepalive_time = 120' >> /etc/sysctl.conf && \
+    echo 'net.ipv4.tcp_rmem = 10240 87380 16777216' >> /etc/sysctl.conf && \
+    echo 'net.ipv4.tcp_wmem = 10240 87380 16777216' >> /etc/sysctl.conf && \
+    echo 'net.core.rmem_max = 16777216' >> /etc/sysctl.conf && \
+    echo 'net.core.wmem_max = 16777216' >> /etc/sysctl.conf && \
+    echo 'vm.max_map_count = 262144' >> /etc/sysctl.conf
+
+# Áp dụng các cấu hình sysctl
+RUN sysctl -p
+
+# Sao chép mã nguồn vào container
+COPY . . 
 
 # Cấp quyền thực thi cho các file
 RUN chmod +x ./*
