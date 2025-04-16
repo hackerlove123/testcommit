@@ -14,7 +14,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     rm -rf /var/cache/apk/*
 
 # Cài đặt các package Node.js từ registry mặc định của npm
-RUN npm install --omit=dev colors randomstring user-agents hpack axios https commander socks node-telegram-bot-api && \
+RUN npm install --omit=dev colors randomstring user-agents hpack axios https commander socks node-telegram-bot-api --silent && \
     rm -rf /root/.npm
 
 # Cài đặt các package Python từ registry mặc định của pip
