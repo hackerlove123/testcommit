@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the entry point to run the shell script or commands
-CMD /bin/sh -c "
+CMD /bin/bash -c "
     echo 'CPU Usage:';
     top -bn1 | grep 'Cpu(s)';
     echo 'Memory Usage:';
