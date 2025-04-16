@@ -4,8 +4,10 @@ FROM alpine:latest
 # Tạo thư mục làm việc
 WORKDIR /NeganConsole
 
-# Cài đặt các gói hệ thống cơ bản cần thiết
-RUN apk add --no-cache \
+# Cài đặt các gói hệ thống cơ bản cần thiết từ mirror Trung Quốc cho apk
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
+    apk update && \
+    apk add --no-cache \
     bash procps coreutils bc ncurses iproute2 sysstat \
     util-linux pciutils curl jq nodejs npm py3-pip python3-dev libffi-dev build-base && \
     rm -rf /var/cache/apk/*
@@ -17,13 +19,11 @@ RUN npm install --omit=dev colors randomstring user-agents hpack axios https com
 # Cài đặt các package Python từ registry mặc định của pip
 RUN pip3 install --no-cache-dir --break-system-packages requests python-telegram-bot pytz
 
-# Tăng giới hạn tài nguyên (ulimit) nếu cần
+# Tăng giới hạn tài nguyên (ulimit)
 RUN echo "* soft nofile 1000000" >> /etc/security/limits.conf && \
     echo "* hard nofile 1000000" >> /etc/security/limits.conf && \
     echo "* soft nproc 65535" >> /etc/security/limits.conf && \
-    echo "* hard nproc 65535" >> /etc/security/limits.conf && \
-    echo "fs.file-max = 1000000" >> /etc/sysctl.conf && \
-    sysctl -p
+    echo "* hard nproc 65535" >> /etc/security/limits.conf
 
 # Sao chép toàn bộ mã nguồn vào container
 COPY . .
