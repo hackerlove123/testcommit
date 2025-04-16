@@ -1,35 +1,41 @@
 # Sử dụng Alpine làm base image
 FROM alpine:latest
 
-# Tạo thư mục làm việc
-WORKDIR /NeganConsole
-
-# Cài đặt các gói hệ thống cơ bản cần thiết từ mirror Trung Quốc cho apk
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
-    apk update && \
+# Cài đặt các công cụ cần thiết để kiểm tra tài nguyên hệ thống
+RUN apk update && \
     apk add --no-cache \
-    bash procps coreutils bc ncurses iproute2 sysstat \
-    util-linux pciutils curl jq nodejs npm py3-pip python3-dev libffi-dev build-base && \
-    rm -rf /var/cache/apk/*
+    bash procps coreutils ncurses iproute2 sysstat curl net-tools
 
-# Cài đặt các package Node.js từ registry mặc định của npm
-RUN npm install --omit=dev colors randomstring user-agents hpack axios https commander socks node-telegram-bot-api --silent && \
-    rm -rf /root/.npm
+# Tạo thư mục làm việc
+WORKDIR /usr/local/bin
 
-# Cài đặt các package Python từ registry mặc định của pip
-RUN pip3 install --no-cache-dir --break-system-packages requests python-telegram-bot pytz
+# Script để kiểm tra tài nguyên
+RUN echo "#!/bin/bash \n\
+# Kiểm tra CPU Usage \n\
+echo 'CPU Usage:' \n\
+top -bn1 | grep 'Cpu(s)' \n\
+\n\
+# Kiểm tra Memory Usage \n\
+echo 'Memory Usage:' \n\
+free -h \n\
+\n\
+# Kiểm tra Disk I/O \n\
+echo 'Disk I/O Usage:' \n\
+iostat -xz \n\
+\n\
+# Kiểm tra Network Traffic \n\
+echo 'Network Traffic:' \n\
+netstat -i \n\
+\n\
+# Kiểm tra giới hạn file descriptor và tiến trình \n\
+echo 'File descriptor limit:' \n\
+ulimit -n \n\
+echo 'Process limit:' \n\
+ulimit -u \n\
+" > check_resources.sh
 
-# Tăng giới hạn tài nguyên (ulimit)
-RUN echo "* soft nofile 1000000" >> /etc/security/limits.conf && \
-    echo "* hard nofile 1000000" >> /etc/security/limits.conf && \
-    echo "* soft nproc 65535" >> /etc/security/limits.conf && \
-    echo "* hard nproc 65535" >> /etc/security/limits.conf
+# Cấp quyền thực thi cho script
+RUN chmod +x check_resources.sh
 
-# Sao chép toàn bộ mã nguồn vào container
-COPY . .
-
-# Cấp quyền thực thi cho các file
-RUN chmod +x ./*
-
-# Chạy script start.sh
-RUN /NeganConsole/start.sh
+# Chạy script để kiểm tra tài nguyên khi container khởi động
+CMD ["./check_resources.sh"]
