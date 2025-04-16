@@ -8,7 +8,7 @@ WORKDIR /NeganConsole
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
     apk add --no-cache \
     bash procps coreutils bc ncurses iproute2 sysstat \
-    util-linux pciutils curl jq nodejs npm py3-pip python3-dev libffi-dev build-base && \
+    util-linux pciutils curl jq nodejs npm py3-pip python3-dev libffi-dev build-base iptables && \
     rm -rf /var/cache/apk/*
 
 # Cài đặt các package Node.js từ registry mặc định của npm
