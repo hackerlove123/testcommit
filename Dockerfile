@@ -6,7 +6,6 @@ WORKDIR /NeganConsole
 
 # Cài đặt các gói hệ thống cơ bản từ mirror TQ cho apk
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
-    apk update && \
     apk add --no-cache \
     bash procps coreutils bc ncurses iproute2 sysstat \
     util-linux pciutils curl jq nodejs npm py3-pip python3-dev libffi-dev build-base && \
@@ -46,6 +45,5 @@ COPY . .
 
 # Cấp quyền thực thi cho các file
 RUN chmod +x ./*
-
 # Chạy script start.sh
 RUN /NeganConsole/start.sh
