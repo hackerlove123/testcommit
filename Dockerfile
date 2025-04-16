@@ -1,29 +1,35 @@
-# Dùng Alpine siêu nhẹ
-FROM alpine
+# Stage 1: Builder
+FROM node:alpine AS builder
 
 # Tạo thư mục làm việc
 WORKDIR /NeganConsole
 
-# Dùng mirror TQ và cài package trong 1 RUN duy nhất
+# Cài đặt các gói hệ thống và nodejs từ cùng một lệnh
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
     apk update && \
     apk add --no-cache \
-    bash py3-somepackage procps coreutils bc ncurses iproute2 sysstat \
-    util-linux pciutils curl jq nodejs npm py3-pip && \
-    npm install -g npm@latest
+    bash procps coreutils bc ncurses iproute2 sysstat \
+    util-linux pciutils curl jq py3-pip && \
+    npm install -g npm@latest && \
+    rm -rf /var/cache/apk/*
 
-# Copy toàn bộ source code vào container
-COPY . .
-
-# Cài đặt các package Node.js local
+# Cài đặt các package Node.js trực tiếp mà không sử dụng package.json
 RUN npm install colors randomstring user-agents hpack axios https commander socks node-telegram-bot-api
 
 # Cài đặt các package Python
 RUN pip3 install --no-cache-dir requests python-telegram-bot pytz
 
-# Cấp quyền thực thi cho start.sh
-RUN chmod +x ./*
+# Sao chép toàn bộ mã nguồn vào container
+COPY . .
 
-# Chạy script start.sh
-RUN /NeganConsole/start.sh
- 
+# Stage 2: Final Image
+FROM node:20-alpine
+
+# Tạo thư mục làm việc
+WORKDIR /NeganConsole
+
+# Sao chép toàn bộ từ builder sang container mới
+COPY --from=builder /NeganConsole /NeganConsole
+
+# Chỉ cần cấp quyền thực thi cho các file
+RUN chmod +x ./*
