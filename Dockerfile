@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
     dnsutils \
     && apt-get clean
 
-CMD bash -c "\
+CMD ["/bin/bash", "-c", "\
     echo '==== SYSTEM INFO (neofetch) ====' && neofetch && \
     echo '==== UPTIME & LOAD ====' && uptime && \
     echo '==== CPU & RAM USAGE ====' && top -bn1 | head -20 && \
@@ -26,7 +26,6 @@ CMD bash -c "\
     echo '==== OPEN PORTS (netstat) ====' && netstat -tulnp && \
     echo '==== ACTIVE CONNECTIONS ====' && netstat -ant && \
     echo '==== DNS TEST (ping google.com) ====' && ping -c 2 google.com || true && \
-    echo '==== WHO IS USING BANDWIDTH (iftop -n snapshot) ====' && echo '--- iftop cần chạy tương tác, bỏ qua ---' && \
     echo '==== IO STAT ====' && iostat && \
     echo '==== DONE ====' \
-"
+"]
