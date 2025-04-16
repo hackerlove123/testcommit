@@ -1,13 +1,17 @@
-FROM alpine:latest
+# Use an official base image
+FROM ubuntu:20.04
 
-# Cài đặt các công cụ cần thiết
-RUN apk update && apk add \
+# Set the working directory inside the container
+WORKDIR /app
+
+# Install necessary utilities
+RUN apt-get update && apt-get install -y \
     procps \
-    util-linux \
+    iostat \
     net-tools \
-    sysstat
+    && rm -rf /var/lib/apt/lists/*
 
-# Cấu hình để chạy script
+# Set the entry point to run the shell script or commands
 CMD /bin/sh -c "
     echo 'CPU Usage:';
     top -bn1 | grep 'Cpu(s)';
@@ -20,5 +24,5 @@ CMD /bin/sh -c "
     echo 'File descriptor limit:';
     ulimit -n;
     echo 'Process limit:';
-    ulimit -u;
+    ulimit -a;
 "
