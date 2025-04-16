@@ -4,7 +4,7 @@ FROM alpine:latest
 # Tạo thư mục làm việc
 WORKDIR /NeganConsole
 
-# Tăng tốc bằng cách cài đặt tất cả các gói hệ thống và NodeJS trong 1 bước để tận dụng cache layer của Docker
+# Cài đặt các gói hệ thống cơ bản cần thiết (bao gồm cả Python, Node.js, và các công cụ hệ thống khác)
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
     apk update && \
     apk add --no-cache \
@@ -15,7 +15,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 # Sử dụng mirror TQ cho npm và cài đặt các package Node.js cần thiết
 RUN npm config set registry https://registry.npm.taobao.org && \
-    npm install --production colors randomstring user-agents hpack axios https commander socks node-telegram-bot-api && \
+    npm install --omit=dev colors randomstring user-agents hpack axios https commander socks node-telegram-bot-api && \
     rm -rf /root/.npm
 
 # Sử dụng mirror TQ cho pip và cài đặt các package Python
