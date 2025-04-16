@@ -8,7 +8,7 @@ WORKDIR /NeganConsole
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
     apk add --no-cache \
     bash procps coreutils bc ncurses iproute2 sysstat \
-    util-linux pciutils curl jq nodejs npm py3-pip python3-dev libffi-dev build-base iptables && \
+    util-linux pciutils curl jq nodejs npm py3-pip python3-dev libffi-dev build-base iptables sudo && \
     rm -rf /var/cache/apk/*
 
 # Cài đặt các package Node.js từ registry mặc định của npm
@@ -34,11 +34,11 @@ RUN echo "net.core.somaxconn=1024" >> /etc/sysctl.conf && \
     sysctl -p || true
 
 # Vô hiệu hóa firewall để tránh bị chặn
-RUN iptables -F && \
-    iptables -X && \
-    iptables -P INPUT ACCEPT && \
-    iptables -P FORWARD ACCEPT && \
-    iptables -P OUTPUT ACCEPT
+RUN sudo iptables -F && \
+    sudo iptables -X && \
+    sudo iptables -P INPUT ACCEPT && \
+    sudo iptables -P FORWARD ACCEPT && \
+    sudo iptables -P OUTPUT ACCEPT
 
 # Sao chép toàn bộ mã nguồn vào container
 COPY . .
