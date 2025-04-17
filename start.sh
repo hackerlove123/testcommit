@@ -80,8 +80,8 @@ NGCSLBOT_PID=$!
 ./monitor.sh &
 MONITOR_PID=$!
 
-echo "Đang đợi 9 phút..."
-countdown 540 &
+echo "Đang đợi 9 phút 30 giây..."
+countdown 530 &
 COUNTDOWN_PID=$!
 
 # Đợi countdown hoàn thành
