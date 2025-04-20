@@ -6,7 +6,9 @@ dstatbot
 count
 countbot
 uam
+cf
 captcha
 cloudflare
 phuongthuy
 bocongan
+cfcybernews
