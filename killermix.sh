@@ -9,9 +9,9 @@ TIME=$2
 # Tải proxy vào live.txt cho cả HTTP, HTTPS
 > live.txt
 for t in http https; do
-  curl -s "https://raw.githubusercontent.com/SoliSpirit/proxy-list/refs/heads/main/Countries/$t/Vietnam.txt" >> live.txt
-  echo >> live.txt  # xuống dòng sau lần 1
-  curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&country=all&ssl=all&anonymity=all&timeout=1000&protocol=$t" >> live.txt
+curl -s "https://raw.githubusercontent.com/SoliSpirit/proxy-list/refs/heads/main/Countries/$t/Vietnam.txt" >> live.txt
+echo >> live.txt  # xuống dòng sau lần 1
+curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&country=all&ssl=all&anonymity=all&timeout=1000&protocol=$t" >> live.txt
 done
 wait
 
