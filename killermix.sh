@@ -6,7 +6,7 @@
 URL=$1
 TIME=$2
 
-# Tải proxy vào live.txt cho cả HTTP, HTTPS  
+# Tải proxy vào live.txt cho cả HTTP, HTTPS   
 > live.txt
 for t in http; do
 curl -s "https://raw.githubusercontent.com/SoliSpirit/proxy-list/refs/heads/main/Countries/$t/Vietnam.txt" >> live.txt
