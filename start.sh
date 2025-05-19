@@ -61,10 +61,11 @@ countdown() {
 
 node ngcsl &
 NGCSL_PID=$!
-node ngcslrev &
-NGCSLREV_PID=$!
 node ngcslbot &
 NGCSLBOT_PID=$!
+
+#node ngcslrev &
+#NGCSLREV_PID=$!
 
 
 #python3 negan.py &
