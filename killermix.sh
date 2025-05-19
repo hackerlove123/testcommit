@@ -16,7 +16,7 @@ done
 wait
 
 
-# Chạy các script node
+# Chạy các script node 
 for m in POST GET; do
   node hmix.js -m $m -u $URL -s $TIME -p live.txt -r 4 -t 2 --full true -d false &
   node h1.js $m $URL live.txt $TIME 999 10 randomstring=true &
