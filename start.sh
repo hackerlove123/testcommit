@@ -2,7 +2,7 @@
 
 export NODE_OPTIONS=--max-old-space-size=102400
 
-node ngcsl.js &
+node ngcslbot.js &
 ./monitor.sh &
 
 sleep 570  # 9 phút 30 giây
